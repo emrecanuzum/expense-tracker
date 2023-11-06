@@ -58,7 +58,7 @@ app.prepare().then(() => {
   });
 
   server.delete("/api/expenses/:id", (req, res) => {
-    Expense.findByIdAndRemove(req.params.id)
+    Expense.findOneAndDelete({ _id: req.params.id })
       .then((expense) => {
         if (!expense) {
           return res.status(404).json({ error: "Expense not found" });
